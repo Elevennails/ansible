@@ -21,7 +21,13 @@
       - docker-ce-cli
       - containerd.io
       - docker-compose
-
+      
+  - name: Create docker group
+    become: yes
+    shell:
+      cmd: |
+        groupadd docker
+        
   - name: Add users to docker group
     become: yes
     shell:
