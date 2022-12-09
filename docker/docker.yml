@@ -21,8 +21,8 @@
       - containerd.io
       - docker-compose
     - name: Add users to docker group
-        become: yes
-        shell:
-          cmd: |
-           awk -F: '($3>=1000)&&($1!="nobody"){print $1}' /etc/passwd | xargs -I % sh -c 'usermod -aG docker %'
+      become: yes
+      shell:
+        cmd: |
+          awk -F: '($3>=1000)&&($1!="nobody"){print $1}' /etc/passwd | xargs -I % sh -c 'usermod -aG docker %'
         
