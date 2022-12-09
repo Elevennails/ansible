@@ -9,7 +9,7 @@ sudo apt-get install -y ansible
 uuid=$(uuidgen)
 mkdir -p /tmp/ansible-${uuid}
 cd /tmp/ansible-${uuid}
-curl https://raw.githubusercontent.com/Elevennails/ansible/run-task.sh -o run-task.sh
+curl https://raw.githubusercontent.com/Elevennails/ansible/main/run-task.sh -o run-task.sh
 chmod +x run-task.sh
 
 # Download and execute ansible tasks
