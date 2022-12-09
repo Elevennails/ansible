@@ -28,7 +28,7 @@
       cmd: |
         awk -F: '($3>=1000)&&($1!="nobody"){print $1}' /etc/passwd | xargs -I % sh -c 'usermod -aG docker %'
 
-  - name: Add users to docker group
+  - name: Install portainer
     become: yes
     shell:
       cmd: |
