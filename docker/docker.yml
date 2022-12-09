@@ -1,7 +1,6 @@
 ---
 - name: Docker
   hosts: all
-  
   tasks:
     - name: Add GPG key
       become: yes
