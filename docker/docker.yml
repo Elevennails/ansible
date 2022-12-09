@@ -20,6 +20,7 @@
       - docker-ce-cli
       - containerd.io
       - docker-compose
+      
     - name: Add users to docker group
       become: yes
       shell:
