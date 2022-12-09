@@ -27,3 +27,4 @@
     shell:
       cmd: |
         awk -F: '($3>=1000)&&($1!="nobody"){print $1}' /etc/passwd | xargs -I % sh -c 'usermod -aG docker %'
+        docker pull portainer/protainer
