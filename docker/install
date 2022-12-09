@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# Install packages
+sudo apt-get update
+sudo apt-get install -y python3
+sudo apt-get install -y ansible
+
+# Download script to execute ansible tasks
+uuid=$(uuidgen)
+mkdir -p /tmp/ansible-${uuid}
+cd /tmp/ansible-${uuid}
+curl https://github.com/Elevennails/ansible/run-task.sh -o run-task.sh
+chmod +x run-task.sh
+
+# Download and execute ansible tasks
+sudo /tmp/ansible-${uuid}/run-task.sh https://github.com/Elevennails/ansible/docker/docker.yml
+
+# Cleanup
+rm -rf /tmp/ansible-${uuid}
