@@ -2,29 +2,29 @@
 - name: Docker
   hosts: all
   tasks:
-    - name: Add GPG key
-      become: yes
-      shell:
-      cmd: |
-        curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --yes --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
-        echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu 
-        $(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list
+  - name: Add GPG key
+    become: yes
+    shell:
+    cmd: |
+      curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --yes --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+      echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu 
+      $(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list
     
-    - name: Install packages
-      become: yes
-      apt:
-      update_cache: yes
-      pkg:
-      - apt-transport-https
-      - ca-certificates
-      - docker-ce
-      - docker-ce-cli
-      - containerd.io
-      - docker-compose
+  - name: Install packages
+    become: yes
+    apt:
+    update_cache: yes
+    pkg:
+    - apt-transport-https
+    - ca-certificates
+    - docker-ce
+    - docker-ce-cli
+    - containerd.io
+    - docker-compose
       
-    - name: Add users to docker group
-      become: yes
-      shell:
-        cmd: |
-          awk -F: '($3>=1000)&&($1!="nobody"){print $1}' /etc/passwd | xargs -I % sh -c 'usermod -aG docker %'
+  - name: Add users to docker group
+    become: yes
+    shell:
+      cmd: |
+        awk -F: '($3>=1000)&&($1!="nobody"){print $1}' /etc/passwd | xargs -I % sh -c 'usermod -aG docker %'
         
